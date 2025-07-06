@@ -10,6 +10,7 @@ from backend.config.database import Base
 
 class Station(Base):
     """Modelo para estaciones meteorológicas"""
+
     __tablename__ = "stations"
 
     id = Column(Integer, primary_key=True, index=True)
@@ -28,6 +29,7 @@ class Station(Base):
 
 class WeatherData(Base):
     """Modelo para datos meteorológicos"""
+
     __tablename__ = "weather_data"
 
     id = Column(Integer, primary_key=True, index=True)
@@ -45,6 +47,7 @@ class WeatherData(Base):
 
 class AnalysisResult(Base):
     """Modelo para resultados de análisis"""
+
     __tablename__ = "analysis_results"
 
     id = Column(Integer, primary_key=True, index=True)
@@ -57,6 +60,7 @@ class AnalysisResult(Base):
 
 class DataProcessingLog(Base):
     """Modelo para logs de procesamiento de datos"""
+
     __tablename__ = "data_processing_logs"
 
     id = Column(Integer, primary_key=True, index=True)
@@ -66,4 +70,4 @@ class DataProcessingLog(Base):
     error_message = Column(Text)
     start_time = Column(DateTime(timezone=True), server_default=func.now())
     end_time = Column(DateTime(timezone=True))
-    created_at = Column(DateTime(timezone=True), server_default=func.now()) 
+    created_at = Column(DateTime(timezone=True), server_default=func.now())

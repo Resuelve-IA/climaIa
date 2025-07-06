@@ -8,10 +8,7 @@ from backend.config.settings import settings
 
 # Crear engine de base de datos
 engine = create_engine(
-    settings.database_url,
-    echo=settings.debug,
-    pool_pre_ping=True,
-    pool_recycle=300
+    settings.database_url, echo=settings.debug, pool_pre_ping=True, pool_recycle=300
 )
 
 # Crear sesión de base de datos
@@ -27,4 +24,4 @@ def get_db():
     try:
         yield db
     finally:
-        db.close() 
+        db.close()

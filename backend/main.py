@@ -15,11 +15,8 @@ from .config.settings import get_settings
 # Configurar logging
 logging.basicConfig(
     level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    handlers=[
-        logging.FileHandler('logs/app.log'),
-        logging.StreamHandler()
-    ]
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    handlers=[logging.FileHandler("logs/app.log"), logging.StreamHandler()],
 )
 
 logger = logging.getLogger(__name__)
@@ -33,7 +30,7 @@ app = FastAPI(
     description="API para extracción, procesamiento y análisis de datos climáticos del IDEAM en Cundinamarca",
     version="1.0.0",
     docs_url="/docs",
-    redoc_url="/redoc"
+    redoc_url="/redoc",
 )
 
 # Configurar CORS
@@ -48,21 +45,23 @@ app.add_middleware(
 # Incluir rutas
 app.include_router(router, prefix="/api/v1", tags=["clima"])
 
+
 # Crear directorios necesarios
 def create_directories():
     """Crea los directorios necesarios para la aplicación."""
     directories = [
         "data/extracted",
-        "data/processed", 
+        "data/processed",
         "data/spatial",
         "analysis",
         "visualizations",
-        "logs"
+        "logs",
     ]
-    
+
     for directory in directories:
         Path(directory).mkdir(parents=True, exist_ok=True)
         logger.info(f"Directorio creado/verificado: {directory}")
+
 
 # Manejo de excepciones global
 @app.exception_handler(Exception)
@@ -74,9 +73,10 @@ async def global_exception_handler(request, exc):
         content={
             "error": "Error interno del servidor",
             "message": str(exc),
-            "type": type(exc).__name__
-        }
+            "type": type(exc).__name__,
+        },
     )
+
 
 @app.exception_handler(HTTPException)
 async def http_exception_handler(request, exc):
@@ -87,29 +87,32 @@ async def http_exception_handler(request, exc):
         content={
             "error": "Error HTTP",
             "message": exc.detail,
-            "status_code": exc.status_code
-        }
+            "status_code": exc.status_code,
+        },
     )
+
 
 # Eventos de inicio y cierre
 @app.on_event("startup")
 async def startup_event():
     """Evento de inicio de la aplicación."""
     logger.info("Iniciando aplicación de análisis climático...")
-    
+
     # Crear directorios
     create_directories()
-    
+
     # Verificar configuración
     logger.info(f"Configuración cargada: {settings.app_name}")
     logger.info(f"Modo de desarrollo: {settings.debug}")
-    
+
     logger.info("Aplicación iniciada correctamente")
+
 
 @app.on_event("shutdown")
 async def shutdown_event():
     """Evento de cierre de la aplicación."""
     logger.info("Cerrando aplicación de análisis climático...")
+
 
 # Endpoints adicionales
 @app.get("/")
@@ -120,8 +123,9 @@ async def root():
         "version": "1.0.0",
         "status": "activo",
         "docs": "/docs",
-        "redoc": "/redoc"
+        "redoc": "/redoc",
     }
+
 
 @app.get("/info")
 async def info():
@@ -139,9 +143,10 @@ async def info():
             "Visualizaciones interactivas",
             "Análisis espacial",
             "Análisis de tendencias",
-            "Validación de datos"
-        ]
+            "Validación de datos",
+        ],
     }
+
 
 @app.get("/status")
 async def status():
@@ -153,14 +158,15 @@ async def status():
             "api": "active",
             "database": "active",
             "data_processing": "active",
-            "visualization": "active"
+            "visualization": "active",
         },
         "resources": {
             "memory_usage": "normal",
             "disk_space": "sufficient",
-            "active_connections": 0
-        }
+            "active_connections": 0,
+        },
     }
+
 
 # Función para ejecutar la aplicación
 def run_app():
@@ -170,8 +176,9 @@ def run_app():
         host=settings.host,
         port=settings.port,
         reload=settings.debug,
-        log_level="info"
+        log_level="info",
     )
 
+
 if __name__ == "__main__":
-    run_app() 
+    run_app()

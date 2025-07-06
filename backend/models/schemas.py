@@ -8,6 +8,7 @@ from pydantic import BaseModel, Field
 
 class WeatherDataBase(BaseModel):
     """Esquema base para datos meteorológicos"""
+
     fecha_observacion: datetime
     valor_observado: float
     nombre_estacion: str
@@ -20,11 +21,13 @@ class WeatherDataBase(BaseModel):
 
 class WeatherDataCreate(WeatherDataBase):
     """Esquema para crear datos meteorológicos"""
+
     pass
 
 
 class WeatherData(WeatherDataBase):
     """Esquema para datos meteorológicos completos"""
+
     id: int
     created_at: datetime
     updated_at: datetime
@@ -35,6 +38,7 @@ class WeatherData(WeatherDataBase):
 
 class StationBase(BaseModel):
     """Esquema base para estaciones"""
+
     codigo_estacion: str
     nombre_estacion: str
     departamento: str
@@ -45,11 +49,13 @@ class StationBase(BaseModel):
 
 class StationCreate(StationBase):
     """Esquema para crear estaciones"""
+
     pass
 
 
 class Station(StationBase):
     """Esquema para estaciones completas"""
+
     id: int
     created_at: datetime
 
@@ -59,6 +65,7 @@ class Station(StationBase):
 
 class AnalysisRequest(BaseModel):
     """Esquema para solicitudes de análisis"""
+
     start_date: datetime
     end_date: datetime
     station_ids: Optional[List[int]] = None
@@ -67,6 +74,7 @@ class AnalysisRequest(BaseModel):
 
 class AnalysisResult(BaseModel):
     """Esquema para resultados de análisis"""
+
     analysis_type: str
     data: dict
     metadata: dict
@@ -75,14 +83,18 @@ class AnalysisResult(BaseModel):
 
 class VisualizationRequest(BaseModel):
     """Esquema para solicitudes de visualización"""
-    chart_type: str = Field(..., description="Tipo de gráfico: heatmap, timeline, geographic")
+
+    chart_type: str = Field(
+        ..., description="Tipo de gráfico: heatmap, timeline, geographic"
+    )
     data_params: dict
     options: Optional[dict] = None
 
 
 class APIResponse(BaseModel):
     """Esquema para respuestas de la API"""
+
     success: bool
     message: str
     data: Optional[dict] = None
-    error: Optional[str] = None 
+    error: Optional[str] = None
