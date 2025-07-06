@@ -13,10 +13,10 @@ import seaborn as sns
 from pathlib import Path
 import json
 
-from ..models.database import DataClimate, Station, AnalysisResult
-from ..config.database import get_db_session
-from ..utils.visualization import PlotGenerator
-from ..utils.statistics import StatisticalAnalyzer
+from backend.models.database import WeatherData, Station, AnalysisResult
+from backend.config.database import get_db
+from backend.utils.visualization import PlotGenerator
+from backend.utils.statistics import StatisticalAnalyzer
 
 logger = logging.getLogger(__name__)
 

@@ -10,17 +10,17 @@ import logging
 from datetime import datetime, timedelta
 from pathlib import Path
 
-from ..services.data_extraction import DataExtractionService
-from ..services.data_processing import DataProcessingService
-from ..services.exploratory_analysis import ExploratoryAnalysisService
-from ..services.visualization_service import VisualizationService
-from ..schemas.api import (
+from backend.services.data_extraction import DataExtractionService
+from backend.services.data_processing import DataProcessingService
+from backend.services.exploratory_analysis import ExploratoryAnalysisService
+from backend.services.visualization_service import VisualizationService
+from backend.schemas.api import (
     ClimateDataRequest, ClimateDataResponse, StationDataResponse,
     AnalysisRequest, AnalysisResponse, VisualizationRequest, 
     ValidationResponse, ProcessingResponse
 )
-from ..utils.validators import DataValidator
-from ..utils.geospatial import GeospatialProcessor
+from backend.utils.validators import DataValidator
+from backend.utils.geospatial import GeospatialProcessor
 
 logger = logging.getLogger(__name__)
 
@@ -527,7 +527,7 @@ async def trend_analysis(
         df = pd.read_csv(data_file)
         
         # Importar StatisticalAnalyzer
-        from ..utils.statistics import StatisticalAnalyzer
+        from backend.utils.statistics import StatisticalAnalyzer
         stat_analyzer = StatisticalAnalyzer()
         
         # Realizar análisis de tendencias

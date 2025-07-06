@@ -13,6 +13,7 @@ class Settings(BaseSettings):
     app_name: str = "ClimaIA API"
     version: str = "1.0.0"
     debug: bool = True
+    secret_key: str = "your_secret_key_here"
     
     # Base de datos
     database_url: str = "postgresql://user:password@localhost:5432/climaia"

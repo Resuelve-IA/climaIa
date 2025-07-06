@@ -7,8 +7,8 @@ from typing import List, Dict, Any
 from datetime import datetime, timedelta
 import pandas as pd
 from sodapy import Socrata
-from ..config.settings import settings
-from ..models.database import DataProcessingLog
+from backend.config.settings import settings
+from backend.models.database import DataProcessingLog
 from sqlalchemy.orm import Session
 
 logger = logging.getLogger(__name__)

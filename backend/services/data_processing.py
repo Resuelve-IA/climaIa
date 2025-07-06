@@ -11,10 +11,10 @@ from datetime import datetime, timedelta
 import re
 from pathlib import Path
 
-from ..models.database import DataClimate, Station
-from ..config.database import get_db_session
-from ..utils.validators import DataValidator
-from ..utils.geospatial import GeospatialProcessor
+from backend.models.database import WeatherData, Station
+from backend.config.database import get_db
+from backend.utils.validators import DataValidator
+from backend.utils.geospatial import GeospatialProcessor
 
 logger = logging.getLogger(__name__)
 

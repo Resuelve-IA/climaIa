@@ -5,7 +5,7 @@ from datetime import datetime
 from sqlalchemy import Column, Integer, String, Float, DateTime, Text, ForeignKey
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
-from ..config.database import Base
+from backend.config.database import Base
 
 
 class Station(Base):
@@ -51,7 +51,7 @@ class AnalysisResult(Base):
     analysis_type = Column(String(100), nullable=False)
     parameters = Column(Text)  # JSON como texto
     result_data = Column(Text)  # JSON como texto
-    metadata = Column(Text)  # JSON como texto
+    extra_metadata = Column(Text)  # JSON como texto (renombrado)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
 
 
