@@ -1,2 +1,62 @@
+# Entorno virtual
+venv/
+
+# Archivos de configuración sensibles
 .env
+.env.*
+
+# Archivos de Python compilados
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Archivos de logs y temporales
+*.log
+logs/
+*.tmp
+*.bak
+*.swp
+
+# Archivos de bases de datos
+*.sqlite3
+*.db
+*.sqlite
+
+# Archivos de datos
+/data/
+!data/README.md
+
+# Archivos de análisis y visualización
+/analysis/
+/visualizations/
+
+# Archivos de notebooks temporales
+.ipynb_checkpoints/
+
+# Archivos de pruebas
+/.pytest_cache/
+/tests/__pycache__/
+
+# Archivos de Jupyter
+*.ipynb
+!codigo.ipynb
+
+# Archivos de desarrollo y dependencias
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Archivos de configuración de IDE
+.vscode/
+.idea/
+*.code-workspace
+
+# Otros
+*.orig
+
 datos_limpios_total.csv
